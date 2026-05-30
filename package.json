@@ -1,0 +1,61 @@
+{
+  "private": true,
+  "name": "@techspikes/fastify-kysely",
+  "version": "0.1.0",
+  "description": "Fastify Kysely connection plugin",
+  "author": "knzbr <87257088+knzbr@users.noreply.github.com>",
+  "license": "MIT",
+  "type": "module",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "npm run test:typescript && npm run test:unit",
+    "test:unit": "c8 --100 node --test",
+    "test:typescript": "tstyche",
+    "rebuild:sqlite": "npm rebuild better-sqlite3 --ignore-scripts=false"
+  },
+  "dependencies": {
+    "fastify-plugin": "^5.1.0"
+  },
+  "peerDependencies": {
+    "fastify": "^5.8.5",
+    "kysely": "^0.29.0"
+  },
+  "devDependencies": {
+    "better-sqlite3": "^12.4.6",
+    "c8": "^11.0.0",
+    "eslint": "^9.39.4",
+    "fastify": "^5.8.5",
+    "neostandard": "^0.13.0",
+    "tstyche": "^7.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techspikes/fastify-kysely.git"
+  },
+  "bugs": {
+    "url": "https://github.com/techspikes/fastify-kysely/issues"
+  },
+  "homepage": "https://github.com/techspikes/fastify-kysely#readme",
+  "keywords": [
+    "fastify",
+    "kysely",
+    "database",
+    "connection",
+    "sql"
+  ],
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "types/index.d.ts"
+  ],
+  "engines": {
+    "node": ">=24"
+  }
+}
