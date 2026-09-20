@@ -56,7 +56,10 @@
     "types/index.d.ts"
   ],
   "engines": {
-    "node": ">=22",
-    "npm": ">=10"
+    "node": ">=22.18.0",
+    "npm": ">=10.9.3"
+  },
+  "allowScripts": {
+    "better-sqlite3": true
   }
 }
