@@ -27,7 +27,7 @@ npm i fastify kysely @electric-sql/pglite
 
 | Plugin version | Fastify version | Kysely version |
 | -------------- | --------------- | -------------- |
-| `^0.1.x` | `^5.x` | `^0.29.x` |
+| `^1.0.x` | `^5.x` | `^0.29.x` |
 
 ## Usage
 

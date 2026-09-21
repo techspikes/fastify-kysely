@@ -1,7 +1,6 @@
 {
-  "private": true,
   "name": "@techspikes/fastify-kysely",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Fastify Kysely connection plugin",
   "author": "knzbr <87257088+knzbr@users.noreply.github.com>",
   "license": "MIT",
