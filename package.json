@@ -12,8 +12,7 @@
     "lint:fix": "eslint --fix",
     "test": "npm run test:typescript && npm run test:unit",
     "test:unit": "c8 --100 node --test",
-    "test:typescript": "tstyche",
-    "rebuild:sqlite": "npm rebuild better-sqlite3 --ignore-scripts=false"
+    "test:typescript": "tstyche"
   },
   "dependencies": {
     "fastify-plugin": "^5.1.0"
@@ -23,7 +22,7 @@
     "kysely": "^0.29.0"
   },
   "devDependencies": {
-    "better-sqlite3": "^12.4.6",
+    "@electric-sql/pglite": "^0.5.8",
     "c8": "^11.0.0",
     "eslint": "^9.39.4",
     "fastify": "^5.8.5",
@@ -58,8 +57,5 @@
   "engines": {
     "node": ">=22.18.0",
     "npm": ">=10.9.3"
-  },
-  "allowScripts": {
-    "better-sqlite3": true
   }
 }

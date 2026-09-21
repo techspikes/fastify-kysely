@@ -16,14 +16,12 @@ database instance through each route.
 npm i @techspikes/fastify-kysely
 ```
 
-Install Kysely, Fastify, and the driver for your database as well.
+Install Kysely, Fastify, and the driver for your database as well. The example
+below uses PGlite, an embedded PostgreSQL-compatible database.
 
 ```sh
-npm i fastify kysely
+npm i fastify kysely @electric-sql/pglite
 ```
-
-For example, SQLite users can install `better-sqlite3`, while PostgreSQL users
-can install `pg`.
 
 ### Compatibility
 
@@ -36,16 +34,16 @@ can install `pg`.
 Import `@techspikes/fastify-kysely` and register it as any other plugin.
 
 ```js
-import Database from 'better-sqlite3'
+import { PGlite } from '@electric-sql/pglite'
 import Fastify from 'fastify'
-import { SqliteDialect } from 'kysely'
+import { PGliteDialect } from 'kysely'
 import fastifyKysely from '@techspikes/fastify-kysely'
 
 const fastify = Fastify()
 
 await fastify.register(fastifyKysely, {
-  dialect: new SqliteDialect({
-    database: new Database('db.sqlite'),
+  dialect: new PGliteDialect({
+    pglite: new PGlite(),
   }),
 })
 
@@ -73,7 +71,7 @@ The plugin creates one Kysely instance when it is registered, assigns it to
 
 The plugin options are passed directly to `new Kysely(options)`.
 
-* `dialect`: Kysely dialect such as `PostgresDialect`, `MysqlDialect`, or
+* `dialect`: Kysely dialect such as `PostgresDialect`, `MysqlDialect`, `PGliteDialect` or
   `SqliteDialect`. Required.
 * `plugins`: Optional Kysely plugins such as `CamelCasePlugin`.
 * `log`: Optional Kysely query logging configuration.
@@ -146,12 +144,6 @@ fastify.get('/items/:name', async (request) => {
 ```sh
 npm run lint
 npm test
-```
-
-If `better-sqlite3` needs to rebuild its native binding:
-
-```sh
-npm run rebuild:sqlite
 ```
 
 ## License

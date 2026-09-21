@@ -1,23 +1,23 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import Database from 'better-sqlite3'
+import { PGlite } from '@electric-sql/pglite'
+import { Kysely, PGliteDialect } from 'kysely'
 import Fastify from 'fastify'
-import { Kysely, SqliteDialect } from 'kysely'
 import fastifyKysely from '../index.js'
 
 function dialect () {
   // Use an in-memory database so plugin registration can be tested without I/O.
-  return new SqliteDialect({ database: new Database(':memory:') })
+  return new PGliteDialect({ pglite: new PGlite() })
 }
 
 test('request.db is a Kysely instance', async (t) => {
-  // Create an isolated Fastify app for this registration test.
+  // Create a new Fastify app for the registration test.
   const app = Fastify({ logger: false })
 
   // Close the app after the test so the plugin can destroy its Kysely instance.
   t.after(() => app.close())
 
-  // Register the plugin with the SQLite dialect used only by this test.
+  // Register the plugin with the PGlite dialect used only by this test.
   await app.register(fastifyKysely, { dialect: dialect() })
 
   // Capture the decorated value from inside a real Fastify request lifecycle.
@@ -39,12 +39,15 @@ test('request.db is a Kysely instance', async (t) => {
   assert.ok(captured instanceof Kysely)
 })
 
-test('throws when registered twice', async () => {
+test('throws when registered twice', async (t) => {
+  // Create a new Fastify app for the duplicate registration check.
+  const app = Fastify({ logger: false })
+
+  // Close PGlite through the plugin's onClose hook even after boot fails.
+  t.after(() => app.close())
+
   // Fastify should reject duplicate decoration of the request object.
   await assert.rejects(async () => {
-    // Create a fresh app so duplicate registration is the only failure source.
-    const app = Fastify({ logger: false })
-
     // The first registration adds the request decorator.
     await app.register(fastifyKysely, { dialect: dialect() })
 
