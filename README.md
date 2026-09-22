@@ -1,10 +1,11 @@
-# fastify-kysely
+# @techspikes/fastify-kysely
 
 [![Node.js CI](https://github.com/techspikes/fastify-kysely/actions/workflows/ci.yml/badge.svg)](https://github.com/techspikes/fastify-kysely/actions/workflows/ci.yml)
 [![neostandard javascript style](https://img.shields.io/badge/code_style-neostandard-brightgreen?style=flat)](https://github.com/neostandard/neostandard)
+[![npm version](https://img.shields.io/npm/v/%40techspikes/fastify-kysely?style=flat)](https://www.npmjs.com/package/@techspikes/fastify-kysely)
 
-Fastify plugin that attaches a shared Kysely database instance to every request as
-`request.db`.
+A simple Fastify Kysely plugin that attaches a shared Kysely database instance
+to every request as `request.db`.
 
 It is intended for Fastify applications that use Kysely directly in route
 handlers, hooks, or other request-scoped code without manually wiring the
